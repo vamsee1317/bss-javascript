@@ -109,7 +109,75 @@ console.log((num4 > num5) && (num4 > num6) && true && (true && false) &&  true);
 // console.log((num4 > num5) || (num4 > num6));
 // console.log(!(num4 > num5)); // ! - opposite
 
+// TypeOf :
+// typeof - returns the type of the variable.
 
-// Terinary Operator
-// TypeOf
-// Increment & Decrement
+
+const userName = "VamseeKrishna";
+const userAge = 25;
+const userIsAdmin = true;
+const userAddress = {
+    street: "Street1",
+    city: "City1",
+    state: "State1",
+    country: "Country1"
+    };
+
+console.log(`
+    TypeOf Username ${typeof userName}
+    TypeOf UserAge ${typeof userAge}
+    TypeOf UserIsAdmin ${typeof userIsAdmin}
+    TypeOf UserAddress ${typeof userAddress}
+    `)
+
+// Increment & Decrement :
+// Increment :
+    // pre incre : ++x
+    // post incre : x++
+// Decrement :
+    // pre decre : --x
+    // post decre : x --
+
+let age = 25;
+let updatedAge = age --;
+console.log(age);
+console.log(updatedAge);
+
+
+// Employee Management System :
+
+const employeeName = "VamseeKrishna";
+let basicSalary = 600000;
+let bonus = 100000;
+let taxRate  = 10;
+
+
+// Salary Calucalation :
+
+let grossSalary = basicSalary + bonus;
+let tax = (taxRate / 100) * grossSalary;
+let netSalary = grossSalary - tax;
+console.log(
+    `
+    Employee Name : ${employeeName} here is paySlip
+    Gross Salary : ${grossSalary}
+    Tax : ${tax}
+    Net Salary : ${netSalary}
+    `
+);
+
+
+// Bonus Eligibility :
+
+let employeeExperience = 3;
+let perfomanceRating = 4;
+
+let isBonusEligible = employeeExperience >= 2 && perfomanceRating >= 3;
+console.log(
+    `
+    Employee Name : ${employeeName}
+    Experience : ${employeeExperience} years
+    Performance Rating : ${perfomanceRating}
+    Bonus Eligible : ${isBonusEligible}
+    `
+)
