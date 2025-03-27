@@ -28,3 +28,9 @@
 
 // 5. querySelectorAll() :
 // This method returns the all elements that matches the specified CSS selector.
+
+
+
+// DOM Manipulation :
+
+// creating an element dynamically
