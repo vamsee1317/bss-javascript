@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- Inline event handling (Not recommended) -->
+    <button onclick="alert('Button is clicked')">Login</button>
+    <button>Logout</button>
+
+    <!-- Why not recommended
+        1. Code duplication
+        2. Mixing js with html is not a good practice
+        3. Harder to manage large applications
+    -->
+
+    <!-- Event Props -->
+     <button id="addToCart">add to cart</button>
+
+     <!-- Event listerners -->
+      <button id="btn">signUp</button>
+
+
+      <button id="cBtn">Change BgColor</button>
+
+      <div id="container">
+        <input type="text" id="nameInput" placeholder="Type Something here....">
+        <p id="output"></p>
+      </div>
+
+      <form action="https://www.achieversit.com/" id="myForm">
+        <input type="text" id="username" placeholder="Enter your username">
+        <input type="password" id="password" placeholder="Enter your password">
+        <button id="submit" type="submit">Submit</button>
+      </form>
+
+
+    <script src="./app.js"></script>
+</body>
+</html>

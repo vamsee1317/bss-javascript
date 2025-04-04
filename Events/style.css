@@ -1,0 +1,29 @@
+
+button{
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+#myForm{
+    width: 380px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1)
+}
+
+#myForm input{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
