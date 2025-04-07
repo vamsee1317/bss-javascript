@@ -39,11 +39,11 @@
 
 // Event Props :
 
-const addToCart = document.getElementById("addToCart");
+// const addToCart = document.getElementById("addToCart");
 
-addToCart.onclick = () => {
-    console.log("Product added into cart");
-}
+// addToCart.onclick = () => {
+//     console.log("Product added into cart");
+// }
 
 // Why not Event props :
 // More managable than inline hamdling
@@ -52,11 +52,11 @@ addToCart.onclick = () => {
 
 // 3. Event Listener (addEventListener method)
 
-const signUpBtn = document.getElementById("btn");
+// const signUpBtn = document.getElementById("btn");
 
-signUpBtn.addEventListener("click", ()=>{
-    console.log("Sign up button is clicked");
-} )
+// signUpBtn.addEventListener("click", ()=>{
+//     console.log("Sign up button is clicked");
+// } )
 
 
 // Supports multiple event handlers
@@ -75,31 +75,107 @@ signUpBtn.addEventListener("click", ()=>{
 
 
 // Mouse event Example : Toggle Background Color
-const colorBtn = document.getElementById("cBtn");
+// const colorBtn = document.getElementById("cBtn");
 
-colorBtn.addEventListener('click', ()=>{
-    document.body.style.backgroundColor = document.body.style.backgroundColor === "yellow" ? "white" : "yellow";
-})
+// colorBtn.addEventListener('click', ()=>{
+//     document.body.style.backgroundColor = document.body.style.backgroundColor === "yellow" ? "white" : "yellow";
+// })
 // This will toggle the background color of the body on click of the button
 
 
 
 // KeyBoard Event Example : Detect Key Press
 
-const nameInput = document.getElementById("nameInput");
-const output = document.getElementById("output");
+// const nameInput = document.getElementById("nameInput");
+// const output = document.getElementById("output");
 
-nameInput.addEventListener("keydown", ()=>{
-    console.log(nameInput.value);
-    output.innerText = nameInput.value;
+// nameInput.addEventListener("keydown", ()=>{
+//     console.log(nameInput.value);
+//     output.innerText = nameInput.value;
 
-})
+// })
 
 
 // Form Event examples : Prevents Default form submission
-const myForm = document.getElementById("myForm");
+// const myForm = document.getElementById("myForm");
 
-myForm.addEventListener('submit', (e)=>{
-    e.preventDefault(); // Stops form from refreshing or submitting
-    console.log("Form submitted");
+// myForm.addEventListener('submit', (e)=>{
+//     e.preventDefault(); // Stops form from refreshing or submitting
+//     console.log("Form submitted");
+// })
+
+
+// Event Bubbling & Capturing
+
+// Javascript handles events using a tree structure (DOM Tree). When an event occures, it follows two phases.
+
+// 1. Capturing Phase - Event starts from the root of the DOM tree and travels downwards
+// 2. Bubbling Phase - Event starts from the target element and travels upwards
+
+
+// Bubbling Phase :
+
+
+// document.getElementById("btn").addEventListener("click", (event)=>{
+
+//     event.stopPropagation(); // Stops Bubbling
+//     console.log("Button clicked");
+// });
+
+// document.getElementById("card").addEventListener("click", ()=>{
+//     console.log("Card clicked");
+// });
+
+// document.getElementById("container").addEventListener("click", ()=>{
+//     console.log("Container is clicked");
+// });
+
+
+// Propagation : Button --> Card --> Container
+
+// Capturing Phase:
+
+
+document.getElementById("btn").addEventListener("click", (event)=>{
+    console.log("Button clicked - Capturing");
+    console.log(event.target)
+}, true );// Capturing;
+
+document.getElementById("card").addEventListener("click", (event)=>{
+    console.log("Card clicked - Capturing");
+}, true);
+
+document.getElementById("container").addEventListener("click", (event)=>{
+    console.log("Container is clicked - Capturing");
+
+}, true);
+
+// Propagation : Container --> Card --> Button
+
+
+
+document.getElementById("cart").addEventListener("click", (e)=>{
+    if(e.target.classList.contains("deleteBtn")){
+        let li = e.target.parentElement;
+        li.remove();
+        alert("Item Removed");
+    }
+
 })
+
+
+// Why This is PowerFull ?
+// 1. we don't attach event listeners to each button
+// 2. Works even for dynamically added cart Items
+// 3. Uses bubling for events
+
+
+
+// Summary :
+
+
+// Feature                  Bubbling                    Capturing
+// Direction                bottom - top                Top - Bottom
+// Default Behaviour        Yes                          No (Must be enabled manually)
+// Usage                    Event Delegation,            Rare, but usefull for overrides
+                            // Global Listeners
