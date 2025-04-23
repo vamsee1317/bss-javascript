@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products with Promises with tailwindcss</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">Products (Using Promises)</h1>
+    <div class="flex justify-center mb-8">
+      <button 
+        onclick="loadProducts()" 
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded shadow transition"
+      >
+        Load Products
+      </button>
+    </div>
+
+    <div id="productList" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <p class="col-span-full text-center text-lg">Click the button to load the product....</p>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
