@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products with Promises with Tailwind CSS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800 relative">
+
+  <!-- Cart Icon -->
+  <div class="absolute top-6 right-6">
+    <button id="cartIcon" class="relative">
+      <i class="fas fa-shopping-cart text-3xl text-blue-700"></i>
+    </button>
+  </div>
+
+  <!-- Cart Message Box -->
+  <div id="msg" class="hidden fixed top-20 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50">
+    Item added to cart
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">Products (Using Promises)</h1>
+    <div class="flex justify-center mb-8">
+      <button 
+        onclick="loadProducts()" 
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded shadow transition"
+      >
+        Load Products
+      </button>
+    </div>
+
+    <div id="productList" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <p class="col-span-full text-center text-lg">Click the button to load the product....</p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Load Products using Fetch and Promises
+    function loadProducts() {
+      const productList = document.getElementById("productList");
+      productList.innerHTML = `<p class="col-span-full text-center text-lg text-gray-500">Loading...</p>`;
+
+      fetch("https://dummyjson.com/products")
+        .then((response) => response.json())
+        .then((data) => {
+          displayProducts(data.products);
+        })
+        .catch((error) => {
+          console.error("Failed to load products.", error);
+          productList.innerHTML = `<p class="col-span-full text-center text-red-600 font-semibold">Failed to load products</p>`;
+        });
+    }
+
+    // Display Products with Add to Cart buttons
+    function displayProducts(products) {
+      const container = document.getElementById("productList");
+      container.innerHTML = "";
+
+      products.forEach((product) => {
+        const div = document.createElement("div");
+        div.className = "bg-white rounded-lg shadow-md p-4 flex flex-col space-y-3 hover:shadow-lg transition";
+
+        div.innerHTML = `
+          <img src="${product.thumbnail}" alt="${product.title}" class="w-full h-48 object-cover rounded-md" />
+          <div>
+            <h3 class="text-xl font-semibold mb-1">${product.title}</h3>
+            <p class="text-green-600 font-bold mb-1">$${product.price}</p>
+            <p class="text-gray-600 text-sm mb-2">${product.description}</p>
+            <button class="addToCart bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-1 rounded">
+              Add to Cart
+            </button>
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+
+      // Attach event listeners to each Add to Cart button
+      document.querySelectorAll(".addToCart").forEach(button => {
+        button.addEventListener("click", showCartMessage);
+      });
+    }
+
+    // Show and auto-hide message
+    function showCartMessage() {
+      const messageBox = document.getElementById("msg");
+      messageBox.innerText = "Item added to cart";
+      messageBox.classList.remove("hidden");
+
+      setTimeout(() => {
+        messageBox.classList.add("hidden");
+      }, 3000);
+    }
+
+    // Also trigger message from top cart icon
+    document.getElementById("cartIcon").addEventListener("click", showCartMessage);
+  </script>
+</body>
+</html>
